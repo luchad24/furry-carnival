@@ -21,7 +21,7 @@ $(document).ready(() => {
                     }
                 },
                 success: () => {
-                    build_airlines_interface();
+                    build_ticket_interface();
                 },
                 error: (jqxhr, status, error) => {
                     alert(error);
@@ -29,6 +29,69 @@ $(document).ready(() => {
             });
     });
 });
+
+var build_ticket_interface = function() {
+    let body = $('body');
+
+    body.empty();
+
+    body.append("<h2>Tickets</h2>")
+
+    let ticket_list = $("<ul id='ticket_list'></ul>");
+    body.append(ticket_list);
+
+
+    let ticket_add_div = $("<div>First Name: <input id='new_ticket_firstname' type='text'><br></div>" +
+        "<div> Middle Name: <input id='new_ticket_middlename' type='text'><br></div>"+
+        "<div> Last Name: <input id='new_ticket_lastname' type='text'><br></div>"+
+        "<div> Age: <input id='new_ticket_age' type='number'><br></div>"+
+        "<div> Gender: <input id='new_ticket_gender' type='text'><br></div>"+
+        "<button id='make_ticket'>Create</button>");
+
+    body.append(ticket_add_div);
+
+    $.ajax(root_url + "tickets",
+        {
+            type: 'GET',
+            xhrFields: {withCredentials: true},
+            success: (tickets) => {
+                for (let i=0; i<tickets.length; i++) {
+                    ticket_list.append("<li>" + tickets[i].first_name +" " +tickets[i].last_name+"</li>");
+                }
+            }
+        });
+
+
+    $('#make_ticket').on('click', () => {
+        let ticket_firstname = $('#new_ticket_firstname').val();
+        let ticket_lastname = $('#new_ticket_lastname').val();
+        let ticket_middlename = $('#new_ticket_middlename').val();
+        let ticket_age = $('#new_ticket_age').val();
+        let ticket_gender = $('#new_ticket_gender').val();
+
+        $.ajax(root_url + "tickets", {
+            type: 'POST',
+            data: {
+                "ticket": {
+                    "first_name": ticket_firstname,
+                    "middle_name": ticket_middlename,
+                    "last_name": ticket_lastname,
+                    "age": ticket_age,
+                    "gender": ticket_gender,
+                    "is_purchased": true,
+                    "price_paid": "290.11",
+                    "instance_id": 8,
+                    "seat_id": 21
+                }
+            },
+            xhrFields: {withCredentials: true},
+            success: (tickets) => {
+                ticket_list.append("<li>" + tickets.first_name+" "+ tickets.last_name + "</li>");
+            }
+        })
+    });
+}
+
 
 var build_airlines_interface = function() {
     let body = $('body');
@@ -44,7 +107,6 @@ var build_airlines_interface = function() {
         "<button id='make_airline'>Create</button></div>");
 
     body.append(airline_add_div);
-
 
     $.ajax(root_url + "airlines",
         {
