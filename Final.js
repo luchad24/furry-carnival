@@ -21,19 +21,131 @@ $(document).ready(() => {
                     }
                 },
                 success: () => {
-                    build_ticket_interface();
+                    build_home();
                 },
                 error: (jqxhr, status, error) => {
                     alert(error);
                 }
             });
     });
+    $(document).on('click', '.departure', function() {
+        let departure = $(this).attr('depart_id');
+        console.log(departure)
+        build_arrival(departure);
+    })
+
+    $(document).on('click', '.arrival', function() {
+        let arrival = $(this).attr('arrive_id');
+        let departure = $(this).attr('depart_id');
+        console.log(arrival)
+        build_time(departure, arrival);
+    })
+
+    $(document).on('click', '.time', function() {
+        let flight = $(this).attr('flight');
+        console.log(flight)
+        build_ticket_interface(flight);
+    })
+    $(document).on('click', '.back_arrival', function() {
+        build_home();
+    })
+    $(document).on('click', '.back_time', function() {
+        let departure = $(this).attr('departure');
+        build_arrival(departure);
+    })
 });
 
-var build_ticket_interface = function() {
+var build_home = function(){
+    let body =$('body');
+    body.empty();
+    body.append("<h1>Depart From?</h1>")
+    let departure_list = $("<div id='departure_list'></div>");
+    body.append(departure_list);
+
+
+    $.ajax(root_url + "flights", {
+        type: 'GET',
+        xhrFields: {withCredentials: true},
+        success: (flights) => {
+            let departures = new Set();
+            for (let i = 0; i < flights.length; i++) {
+                if(!(departures.has(flights[i].departure_id))) {
+                    departures.add(flights[i].departure_id);
+                    $.ajax(root_url+"airports/"+ flights[i].departure_id,{
+                        type: 'GET',
+                        xhrFields: {withCredentials: true},
+                        success: (airports) => {
+                            departure_list.append("<button class='departure' depart_id='" + airports.id + "' >" + airports.name + "</button>");
+
+                        }
+                    })
+
+                }
+            }
+        }
+    });
+
+}
+
+var build_arrival = function(departure){
+    let body = $('body');
+    body.empty();
+    body.append("<h1>Arrive?</h1>");
+    body.append("<button class='back_arrival'><-back</button>")
+    let arrival_list = $("<div id='arrival_list'></div>");
+    body.append(arrival_list);
+
+    $.ajax(root_url +"flights?filter[departure_id]="+departure,{
+        type:'GET',
+        xhrFields: {withCredentials: true},
+        success: (flights) => {
+            let arrivals = new Set();
+            for (let i=0; i<flights.length; i++) {
+                if(!(arrivals.has(flights[i].arrival_id))){
+                    arrivals.add(flights[i].arrival_id);
+                    $.ajax(root_url+'airports/'+flights[i].arrival_id,{
+                        type:'GET',
+                        xhrFields: {withCredentials: true},
+                        success: (airports) => {
+                            arrival_list.append("<button class='arrival' depart_id='"+departure+"'arrive_id='" + airports.id + "' >" + airports.name + "</button>");
+
+                        }
+                    })
+                }
+
+            }
+
+        }
+    })
+}
+
+
+var build_time = function(departure, arrival) {
+    let body = $('body');
+    body.empty();
+    body.append("<h1>TIME?</h1>");
+    body.append("<button class='back_time' departure='"+departure+"'><-back</button>")
+    let time_list = $("<div id='time_list'></div>");
+    body.append(time_list);
+
+    $.ajax(root_url +"flights?filter[departure_id]="+departure+"&filter[arrival_id]="+arrival, {
+        type: 'GET',
+        xhrFields: {withCredentials: true},
+        success: (flights) => {
+            for (let i = 0; i < flights.length; i++) {
+                time_list.append("Departs at: " + flights[i].departs_at + " Arrives at: "+ flights[i].arrives_at+
+                    "<button class = 'time'  flight ='"+flights[i].id+"'>BOOK NOW</button>")
+            }
+        }
+    })
+}
+
+var build_ticket_interface = function(flight) {
     let body = $('body');
 
     body.empty();
+
+    body.append("<div id='nav'><p id='airlines'>Airlines</p></div>")
 
     body.append("<h2>Tickets</h2>")
 
@@ -90,6 +202,10 @@ var build_ticket_interface = function() {
             }
         })
     });
+
+    $('#airlines').on('click', () =>{
+        build_airlines_interface();
+    })
 }
 
 
