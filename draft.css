@@ -1,0 +1,15 @@
+.blk{
+    width: 300px;
+    height:500px;
+    overflow: scroll;
+}
+#pagebody{
+    column-count: 3;
+    column-width: 400px;
+}
+.searchlist{
+    height: 310px;
+    /*overflow: scroll;*/
+}
+
+
