@@ -121,7 +121,8 @@ var build_home = function(){
 
         "<div class='d-inline-block time blk'><h2>when</h2>"+
         "<!-- Search form --><input id='time_search' class=\'form-control\' type=\'text\' placeholder=\'Search\' aria-label=\'Search\'>" +
-        "<div class='searchlist time-list'></div></div>");
+        "<div class='searchlist time-list'></div><div>" +
+        "<button class='button disabled' type='button'>Book tickets -></button></div></div>");
     build_departure();
 
 };

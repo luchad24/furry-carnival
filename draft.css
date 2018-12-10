@@ -1,7 +1,9 @@
 .blk{
     width: 300px;
-    height:500px;
+    height:700px;
+    display: inline-block;
     overflow: scroll;
+    padding: 30px;
 }
 .searchlist{
     height: 400px;
