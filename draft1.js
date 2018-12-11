@@ -154,6 +154,9 @@ $(document).ready(() => {
         let query = $(this).val().toUpperCase();
         let list = $(".arrival");
         search_filter(list, query);
+    });
+    $(document).on('click','#bookbutton',function () {
+        build_seat();
     })
 
 });
