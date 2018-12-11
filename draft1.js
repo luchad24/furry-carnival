@@ -49,6 +49,9 @@ $(document).ready(() => {
         this_departure = $(this).attr('depart_id');
         this_arrival = '';
         this_time = '';
+        let button = $("#bookbutton");
+        button.addClass("disabled");
+        button.removeClass("active");
         $('.time-list').empty();
         $(".departure").removeClass('active');
         $(this).addClass('active');
@@ -59,6 +62,10 @@ $(document).ready(() => {
     $(document).on('click', '.arrival', function() {
         this_arrival = $(this).attr('arrive_id');
         this_time = '';
+
+        let button = $("#bookbutton");
+        button.addClass("disabled");
+        button.removeClass("active");
         $('.arrival').removeClass('active');
         $(this).addClass('active');
         console.log(this_arrival);
@@ -66,11 +73,14 @@ $(document).ready(() => {
     });
 
     $(document).on('click', '.time', function() {
-        this_time = $(this).attr
+        this_time = $(this).attr;
         let flight = $(this).attr('flight');
-        console.log("flight:"+flight);
-        $(".book_button").empty();
-        $('.book_button').append("<button type='button' class='button to_seat' flight ='"+flight+"'>Choose Seat</button>");
+        console.log("flight:");
+        $(this).addClass('active');
+        let button = $("#bookbutton");
+        button.removeClass("disabled");
+        button.addClass("active");
+        //$('.book_button').append("<button type='button' class='button to_seat' flight ='"+flight+"'>Choose Seat</button>");
     });
 
     $(document).on('click', '.to_seat', function(){
@@ -171,6 +181,7 @@ let search_filter = function(list, query){
 let build_home = function(){
     let body = $('body');
     body.empty();
+    body.css('background-image','url("backgrnd.jpg")');
     body.append("<nav class=\"navbar navbar-inverse\">\n" +
         "  <div class=\"container-fluid\">\n" +
         "    <div class=\"navbar-header\">\n" +
@@ -188,7 +199,7 @@ let build_home = function(){
     body.append("<div id='pagebody'></div>");
     let pagebody = $('#pagebody');
     //pagebody.append("<button class='book'>Book Another Flight</button>");
-    pagebody.append("<div class='d-inline-block dep blk'><h2>where from</h2><!-- Search form -->\n" +
+    pagebody.append("<div class='blocksblock' ><div class='d-inline-block dep blk'><h2>where from</h2><!-- Search form -->\n" +
         "<input id='dep_search' class=\'form-control\' type=\'text\' placeholder=\'Search\' aria-label=\'Search\'>" +
         "<div class='searchlist dep-list'></div></div>" +
 
@@ -196,10 +207,13 @@ let build_home = function(){
         "<!-- Search form --><input id='arr_search' class=\'form-control\' type=\'text\' placeholder=\'Search\' aria-label=\'Search\'>" +
         "<div class='searchlist arr-list'></div></div>"+
 
-        "<div class='d-inline-block time blk'><h2>when</h2>"+
+        "<div class='d-inline-block tim blk'><h2>when</h2>"+
         "<!-- Search form --><input id='time_search' class=\'form-control\' type=\'text\' placeholder=\'Search\' aria-label=\'Search\'>" +
-        "<div class='searchlist time-list'></div></div>" +
-        "<div class='book_button'></div>");
+        "<div class='searchlist time-list'></div>" +
+        // "<div class='book_button'><<button type=\"button\" class=\"btn btn-lg btn-primary disabled" id='bookbutton'" +
+        // " >Book Tickets Now</button></div></div>");>
+        "<button type='button' class='btn btn-lg btn-primary disabled' id='bookbutton'>Book Tickets Now</button></div></div>");
+
     build_departure();
 
 };
@@ -227,7 +241,6 @@ let build_your_tickets = function () {
 let build_departure = function(){
     let body =$('.dep-list');
     body.empty();
-    $(".book_button").empty();
     // body.append("<h1>Depart From?</h1>")
     // body.append("<button class='back_departure'><-back</button>")
     let departure_list = $("<ul class='list-group' id='departure_list'></ul>");
@@ -247,7 +260,7 @@ let build_departure = function(){
                         xhrFields: {withCredentials: true},
                         success: (airports) => {
                             departure_list.append("<a class='departure list-group-item list-group-item-action' " +
-                                "\depart_id='" + airports.id + "' >" + airports.name + "</a>");
+                                "\depart_id='" + airports.id + "' ><span class=\"glyphicon glyphicon-plane\"></span>" + airports.name + "</a>");
                             departure_list.append()
                         }
                     })
@@ -262,7 +275,7 @@ let build_departure = function(){
 let build_arrival = function(departure){
     let body = $('.arr-list');
     body.empty();
-    $(".book_button").empty();
+    //$(".book_button").empty();
     //body.append("<h1>Arrive?</h1>");
     //body.append("<button class='back_arrival'><-back</button>")
     let arrival_list = $("<ul class='list-group' id='arrival_list'></ul>");
@@ -281,7 +294,8 @@ let build_arrival = function(departure){
                         xhrFields: {withCredentials: true},
                         success: (airports) => {
                             arrival_list.append("<a href='#' class='arrival list-group-item list-group-item-action' " +
-                                "depart_id='"+departure+"'arrive_id='" + airports.id + "' >" + airports.name + "</a>");
+                                "depart_id='"+departure+"'arrive_id='" + airports.id + "' ><span class=\"glyphicon " +
+                                "glyphicon-plane\"></span>" + airports.name + "</a>");
 
                         }
                     })
@@ -297,7 +311,7 @@ let build_arrival = function(departure){
 let build_time = function(departure, arrival) {
     let body = $('.time-list');
     body.empty();
-    $(".book_button").empty();
+    //$(".book_button").empty();
     // body.append("<h1>TIME?</h1>");
     // body.append("<button class='back_time' departure='"+departure+"'><-back</button>")
     let time_list = $("<ul class='list-group' id='time_list'></ul>");
@@ -317,7 +331,7 @@ let build_time = function(departure, arrival) {
                 let dep_time = raw_depart.split("T")[1];
 
                 time_list.append("<a class='time list-group-item list-group-item-action' flight ='"+flights[i].id+"'" +
-                    ">" +
+                    "><span class=\"glyphicon glyphicon-calendar\"></span>" +
                     "Departs at: " + dep_time + " Arrives at: "+ flights[i].arrives_at+
                     "</a>")
             }
