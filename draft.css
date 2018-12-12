@@ -18,6 +18,9 @@
     height: 85%;
     overflow: scroll;
 }
+.seats-list{
+    height:80%;
+}
 .time-list{
     height:525px;
     overflow: scroll;
@@ -25,4 +28,7 @@
 .blocksblock{
     margin: auto;
     width:90%;
+}
+.tixbloc{
+    width: 600px;
 }
