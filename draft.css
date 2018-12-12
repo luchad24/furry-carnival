@@ -32,3 +32,12 @@
 .tixbloc{
     width: 600px;
 }
+.itinbloc{
+    width: 600px;
+}
+#ticket_list{
+    height:60%;
+}
+#purchased_list{
+    height: 75%;
+}
