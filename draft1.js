@@ -28,10 +28,22 @@ $(document).ready(() => {
                 }
             });
     });
+
     let this_departure = '';
     let this_arrival = '';
     let this_time = '';
+    let this_flight = '';
+    let this_instance = '';
 
+
+    $(document).on('click','#logout',function () {
+        $.ajax(root_url+"sessions/", {
+            type:'DELETE',
+            success: () =>{
+                location.reload();
+            }
+        })
+    });
     $(document).on('click', '.delete', function(){
         let ticket_id  = $(this).attr('ticket_id');
         $.ajax(root_url+"tickets/"+ticket_id,{
@@ -74,7 +86,9 @@ $(document).ready(() => {
 
     $(document).on('click', '.time', function() {
         this_time = $(this).attr;
-        let flight = $(this).attr('flight');
+
+        this_flight = $(this).attr('flight');
+        this_instance = $(this).attr('instance');
         console.log("flight:");
         $(this).addClass('active');
         let button = $("#bookbutton");
@@ -125,26 +139,6 @@ $(document).ready(() => {
         $('#gohome').addClass('active');
         build_home();
     });
-    // Search stuff
-    // $(document).on('keyup','#dep_search', function () {
-    //     $(".noresults").remove();
-    //     let departures = $('.departure');
-    //     let query = $(this).val().toUpperCase();
-    //     if(query.length > 0){
-    //         let matched = departures.filter(function () {
-    //             return $(this).text().toUpperCase().includes(query);
-    //         }).show();
-    //         let unmatched = departures.filter(function () {
-    //             return !$(this).text().toUpperCase().includes(query);
-    //         }).hide();
-    //         if (matched.length === 0){
-    //            // $(".departure-list").append("<a class=\'noresults list-group-item list-group-item-action\'>No results</a>");
-    //         }
-    //
-    //     }else{
-    //         departures.each().show();
-    //     }
-    // });
     $(document).on('keyup','#dep_search',function () {
         let query = $(this).val().toUpperCase();
         let list = $(".departure");
@@ -195,7 +189,7 @@ let build_home = function(){
         "      <li id='yourtix'><a hfref='#'>Your Tickets</a></li>\n" +
         "    </ul>\n" +
         "    <ul class=\"nav navbar-nav navbar-right\">\n" +
-        "      <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Logout</a></li>\n" +
+        "      <li><a id='logout'><span class=\"glyphicon glyphicon-log-in\"></span> Logout</a></li>\n" +
         "    </ul>\n" +
         "  </div>\n" +
         "</nav>");
@@ -324,19 +318,34 @@ let build_time = function(departure, arrival) {
         type: 'GET',
         xhrFields: {withCredentials: true},
         success: (flights) => {
+            //let instances_list = [];
             for (let i = 0; i < flights.length; i++) {
-                let raw_depart = flights[i].departs_at;
-                // let dep_date = raw_depart.split("T")[0];
-                // let dep_year = dep_date.split('-')[0]
-                // let dep_day = dep_date.split("-")[1];
-                // let dep_month = dep_date.split("-")[2];
+                $.ajax(root_url + "instances?filter[flight_id]="+flights[i].id, {
+                    dataType: "json",
+                    type: "GET",
+                    xhrFields: {withCredentials: true},
+                    success: (instances) => {
+                        for(let j = 0; j <instances.length; j++) {
+                            let raw_date = instances[j].date;
+                            let raw_depart = flights[i].departs_at;
+                            let dep_time = raw_depart.split("T")[1];
+                            let dep_hour = dep_time.split(":")[0];
+                            let dep_minute = dep_time.split(":")[1];
+                            let raw_arr = flights[i].arrives_at;
+                            let arr_time = raw_arr.split("T")[1];
+                            let arr_hour = arr_time.split(":")[0];
+                            let arr_minute = arr_time.split(":")[1];
+                            if(!instances[j].is_cancelled){ time_list.append("<a class='time list-group-item list-group-item-action' flight ='" + flights[i].id + "'" +
+                                "instance='"+instances[j].id+"'><span class=\"glyphicon glyphicon-calendar\"></span>" +
+                                raw_date + "<br>Departs at: " + dep_hour+":"+dep_minute + " Arrives at: "+ arr_hour+":"+arr_minute+
+                                "</a>")}
 
-                let dep_time = raw_depart.split("T")[1];
+                        }
+                    }
+                }
+            );
 
-                time_list.append("<a class='time list-group-item list-group-item-action' flight ='"+flights[i].id+"'" +
-                    "><span class=\"glyphicon glyphicon-calendar\"></span>" +
-                    "Departs at: " + dep_time + " Arrives at: "+ flights[i].arrives_at+
-                    "</a>")
+
             }
         }
     })
