@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f2ad3b-12a6-4de3-a76b-4e066af70691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draft.css" beforeDir="false" afterPath="$PROJECT_DIR$/draft.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draft.html" beforeDir="false" afterPath="$PROJECT_DIR$/draft.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draft1.js" beforeDir="false" afterPath="$PROJECT_DIR$/draft1.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/draft.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+            <state relative-caret-position="115">
+              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/draft.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+            <state relative-caret-position="13">
+              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -38,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/draft1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-361">
-              <caret line="306" column="58" selection-start-line="306" selection-start-column="58" selection-end-line="306" selection-end-column="58" />
+            <state relative-caret-position="-3609">
+              <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -47,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/luciadraft.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3663">
-              <caret line="573" column="2" selection-start-line="573" selection-start-column="2" selection-end-line="573" selection-end-column="2" />
+            <state relative-caret-position="197">
+              <caret line="680" column="13" lean-forward="true" selection-start-line="680" selection-start-column="13" selection-end-line="680" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -76,8 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>seat</find>
-      <find>.on(</find>
       <find>time-list</find>
       <find>var</find>
       <find>time</find>
@@ -96,6 +94,18 @@
       <find>seatchosen</find>
       <find>delete</find>
       <find>tix</find>
+      <find>cart</find>
+      <find>purc</find>
+      <find>purchase</find>
+      <find>form</find>
+      <find>form&gt;</find>
+      <find>confirm</find>
+      <find>this_pl</find>
+      <find>plane_id</find>
+      <find>build_seat</find>
+      <find>flight:</find>
+      <find>bookbut</find>
+      <find>build_se</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,10 +115,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/draft.js" />
-        <option value="$PROJECT_DIR$/draft.html" />
         <option value="$PROJECT_DIR$/luciadraft.js" />
         <option value="$PROJECT_DIR$/draft.css" />
         <option value="$PROJECT_DIR$/draft1.js" />
+        <option value="$PROJECT_DIR$/draft.html" />
       </list>
     </option>
   </component>
@@ -166,7 +176,7 @@
       <option name="presentableId" value="Default" />
       <updated>1544389126614</updated>
       <workItem from="1544389127873" duration="549000" />
-      <workItem from="1544464985740" duration="33867000" />
+      <workItem from="1544464985740" duration="38358000" />
     </task>
     <task id="LOCAL-00001" summary="hello ladies">
       <created>1544474251251</created>
@@ -210,18 +220,51 @@
       <option name="project" value="LOCAL" />
       <updated>1544583644764</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="im an idit">
+      <created>1544596106606</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544596106606</updated>
+    </task>
+    <task id="LOCAL-00008" summary="we out here">
+      <created>1544598607431</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1544598607431</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34416000" />
+    <option name="totallyTimeSpent" value="38907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="34" y="23" width="1199" height="733" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992" visible="true" weight="0.2614601" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.5008" side_tool="true" visible="true" weight="0.2614601" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992" visible="true" weight="0.2614601" />
+      <window_info id="Structure" order="1" sideWeight="0.5008" side_tool="true" weight="0.2614601" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.328" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.1408" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992" visible="true" weight="0.2614601" />
+      <window_info id="Structure" order="1" sideWeight="0.5008" side_tool="true" visible="true" weight="0.2614601" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -237,7 +280,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -248,7 +291,9 @@
     <MESSAGE value="(-:" />
     <MESSAGE value="hullo!!!!" />
     <MESSAGE value="add backgroud" />
-    <option name="LAST_COMMIT_MESSAGE" value="add backgroud" />
+    <MESSAGE value="im an idit" />
+    <MESSAGE value="we out here" />
+    <option name="LAST_COMMIT_MESSAGE" value="we out here" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Final.js">
@@ -268,29 +313,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/luciadraft.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3663">
-          <caret line="573" column="2" selection-start-line="573" selection-start-column="2" selection-end-line="573" selection-end-column="2" />
+        <state relative-caret-position="197">
+          <caret line="680" column="13" lean-forward="true" selection-start-line="680" selection-start-column="13" selection-end-line="680" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/draft.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        <state relative-caret-position="13">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/draft.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        <state relative-caret-position="115">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/draft1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="306" column="58" selection-start-line="306" selection-start-column="58" selection-end-line="306" selection-end-column="58" />
+        <state relative-caret-position="-3609">
+          <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
         </state>
       </provider>
     </entry>

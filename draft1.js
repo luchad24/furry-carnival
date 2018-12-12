@@ -97,8 +97,11 @@ $(document).ready(() => {
         dep_time = $(this).attr('deptime');
         arr_time = $(this).attr('arrtime');
         this_flight = $(this).attr('flight');
+        //alert("heksdj");
+        this_plane = $(this).attr('plane');
         this_instance = $(this).attr('instance');
-        console.log("flight:");
+        console.log("flight:"+this_flight);
+        console.log("instance:"+this_instance);
         $(this).addClass('active');
         let button = $("#bookbutton");
         button.removeClass("disabled");
@@ -170,8 +173,8 @@ $(document).ready(() => {
         search_filter(list, query);
     });
     $(document).on('click','#bookbutton',function () {
-        build_seat();
-    })
+        build_seat(this_flight, this_plane);
+    });
 
     $(document).on('click', '.cabinbox', function(){
         box = $(this).attr('box');
@@ -480,6 +483,7 @@ let build_time = function(departure, arrival) {
                     xhrFields: {withCredentials: true},
                     success: (instances) => {
                         for(let j = 0; j <instances.length; j++) {
+                            let plane_id = flights[i].plane_id;
                             let raw_date = instances[j].date;
                             let raw_depart = flights[i].departs_at;
                             let dep_time = raw_depart.split("T")[1];
@@ -493,7 +497,7 @@ let build_time = function(departure, arrival) {
                             let arr_minute = arr_time.split(":")[1];
                             let format_arr_time = arr_hour+":"+arr_minute;
                             if(!instances[j].is_cancelled){ time_list.append("<a class='time list-group-item list-group-item-action' flight ='" + flights[i].id + "'" +
-                                "instance='"+instances[j].id+"'date='"+raw_date+"'deptime='"+format_dep_time+"' arrtime='"+format_arr_time+"'>" +
+                                "instance='"+instances[j].id+"'date='"+raw_date+"'deptime='"+format_dep_time+"' arrtime='"+format_arr_time+"'plane='"+plane_id+"'>" +
                                 "<span class=\"glyphicon glyphicon-calendar\"></span>" +
                                 raw_date + "<br>Departs at: " + format_dep_time + " Arrives at: "+ format_arr_time+
                                 "</a>")}
@@ -509,8 +513,9 @@ let build_time = function(departure, arrival) {
     })
 };
 
-let build_seat = function(flight){
-    console.log(flight);
+let build_seat = function(flight, plane){
+    console.log("i am in build seat and this is my flight: "+flight);
+    console.log("here is my plane: "+plane);
     let body = $('#pagebody');
     body.empty();
     //body.append("<h1>Pick A Seat</h1>");
@@ -549,17 +554,17 @@ let build_seat = function(flight){
 
     let seat_list= $(".seats-list");
     let seatlist= $("<ul class='list-group' id='seat_list'></ul>");
-
-    $.ajax(root_url+"flights/"+flight,{
-        type:'GET',
-        xhrFields: {withCredentials: true},
-        success: (flights) =>{
-            $('#seat_list').attr("plane_id", flights.plane_id);
-        }
-    })
-    let plane_id = $('#plane_id').attr('plane_id');
-    if(plane_id == undefined){
-        plane_id = 14362;
+    //
+    // $.ajax(root_url+"flights/"+flight,{
+    //     type:'GET',
+    //     xhrFields: {withCredentials: true},
+    //     success: (flights) =>{
+    //         this_plane = $('#seat_list').attr("plane_id", flights.plane_id);
+    //     }
+    // });
+    let plane_id = plane;
+    if(plane_id === undefined){
+        plane_id = 187182;
     }
     console.log(plane_id);
 
